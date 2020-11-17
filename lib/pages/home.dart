@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/components/horizontal_list.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_tutorial/components/products.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,12 +11,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    // imageCarousel widget
     Widget imageCarousel = new Container(
       height: 200.0,
       child: Carousel(
           animationCurve: Curves.fastOutSlowIn,
           animationDuration: Duration(milliseconds: 5000),
-          autoplay: true,
+          autoplay: false,
           dotSize: 5.0,
           indicatorBgPadding: 9.0,
           boxFit: BoxFit.cover,
@@ -29,6 +31,7 @@ class _HomePageState extends State<HomePage> {
           ]),
     );
     return Scaffold(
+      // AppBar
       appBar: AppBar(
         title: Text("ShoppApp"),
         backgroundColor: Colors.red,
@@ -47,6 +50,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {}),
         ],
       ),
+      // Drawer
       drawer: Drawer(
         child: ListView(
           children: [
@@ -98,9 +102,9 @@ class _HomePageState extends State<HomePage> {
             InkWell(
               onTap: () {},
               child: ListTile(
-                title: Text("Categories"),
+                title: Text("Shopping cart"),
                 leading: Icon(
-                  Icons.category,
+                  Icons.shopping_cart,
                   color: Colors.red,
                 ),
               ),
@@ -139,15 +143,27 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      // Body
       body: ListView(
         children: [
+          // imageCarousel
           imageCarousel,
+          // Categories
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text("Categories"),
           ),
           HorizontalList(),
           Divider(),
+          // Products
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text("Products"),
+          ),
+          Container(
+            height: 320.0,
+            child: Products(),
+          )
         ],
       ),
     );
